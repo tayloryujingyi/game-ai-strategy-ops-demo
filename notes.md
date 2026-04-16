@@ -1,0 +1,17 @@
+user_id
+register_days
+last_login_days_ago
+login_days_7d
+avg_session_minutes_7d
+battles_7d
+events_joined_30d
+social_interactions_7d
+total_payment
+payment_count
+last_payment_days_ago
+first_payment_done
+favorite_mode
+device_type
+region
+vip_level
+avg_payment_amount
