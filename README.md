@@ -16,7 +16,6 @@ Using mock player data, this project simulates a lightweight workflow from:
 - campaign list export
 
 ## Core Features
-
 ### 1. Batch Player Scoring and Segmentation
 The system reads mock player behavioral data and generates:
 - lifecycle stage
@@ -103,7 +102,8 @@ src/
   exportCampaignList.js
   demo.js
 
-How to Run
+```
+## How to Run
 Install dependencies
 npm install csv-parser csv-writer
 1. Generate scored player output
