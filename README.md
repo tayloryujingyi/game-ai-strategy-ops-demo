@@ -1,21 +1,27 @@
 # AI-Powered Player Lifecycle Strategy Platform
 
-A Node.js-based prototype for game player lifecycle strategy operations, designed around core game operations scenarios such as churn recall, first-purchase conversion, and high-value player maintenance.
+A Node.js + Next.js prototype for game player lifecycle strategy operations, designed around core game operations scenarios such as churn recall, first-purchase conversion, high-value player maintenance, and segment-level campaign planning.
 
 ## Project Background
-This project was built as a self-driven demo for AI strategy operations in the game industry.  
+
+This project was built as a self-driven demo for AI strategy operations in the game industry.
+
 Instead of creating a generic chatbot, I focused on a more business-relevant problem:
 
-**How can player behavioral data be translated into actionable operation strategies?**
+**How can player behavioral data be translated into actionable operation strategies and visualized through a lightweight operations dashboard?**
 
 Using mock player data, this project simulates a lightweight workflow from:
 - player identification
 - lifecycle segmentation
 - churn / conversion / LTV scoring
-- strategy recommendation
+- profile lookup
+- priority list filtering
+- campaign suggestion generation
 - campaign list export
+- frontend dashboard visualization
 
 ## Core Features
+
 ### 1. Batch Player Scoring and Segmentation
 The system reads mock player behavioral data and generates:
 - lifecycle stage
@@ -58,9 +64,17 @@ It generates lightweight operation suggestions for different user segments, incl
 ### 6. Campaign List Export
 It exports target user groups into CSV files for downstream operational use.
 
+### 7. Lightweight Frontend Dashboard
+A lightweight Next.js frontend prototype was added to visualize:
+- dashboard-level summary metrics
+- player profile lookup
+- priority user lists
+- segment-level campaign suggestions
+
 ---
 
 ## Example Business Scenarios
+
 This prototype is designed around several common game operation scenarios:
 
 - **Churn Recall**  
@@ -78,7 +92,12 @@ This prototype is designed around several common game operation scenarios:
 ---
 
 ## Tech Stack
+
 - Node.js
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
 - csv-parser
 - csv-writer
 
@@ -92,6 +111,9 @@ data/
   users_scored.csv
   high_potential_first_purchase_list.csv
 
+scripts/
+  exportUsersJson.js
+
 src/
   processUsers.js
   scoring.js
@@ -102,51 +124,81 @@ src/
   exportCampaignList.js
   demo.js
 
+frontend/
+  src/app/page.tsx
+  src/app/profile/page.tsx
+  src/app/priority-lists/page.tsx
+  src/app/campaign-suggestion/page.tsx
+  src/components/Navbar.tsx
+  src/lib/usersScored.json
+
 ```
 ## How to Run
-Install dependencies
+
+### 1. Install backend dependencies
+```bash
 npm install csv-parser csv-writer
-1. Generate scored player output
+2. Generate scored player output
 node src/processUsers.js
-2. Check overall summary
-node src/summary.js
-3. Query a single player profile
-node src/profile.js U0015
-4. View top priority users
-node src/topUsers.js
-5. Generate campaign suggestion by segment
-node src/campaign.js "High Potential First Purchase"
-6. Export a target campaign list
-node src/exportCampaignList.js "High Potential First Purchase"
-7. View project demo guide
-node src/demo.js
-Sample Outputs
+3. Export scored data to frontend JSON
+node scripts/exportUsersJson.js
+4. Run frontend dashboard
+cd frontend
+npm install
+npm run dev
+5. Open local dashboard
+http://localhost:3001
+```
+
+---
+
+## Frontend Pages
+
+The frontend dashboard currently includes:
+
+- **Dashboard**
+  Displays lifecycle stage count, high churn users, high LTV users, and first-purchase opportunity users based on actual scoring output.
+- **Player Profile**
+  Supports user-level search using exported scoring data.
+- **Priority Lists**
+  Displays high-priority users for recall, VIP maintenance, and first-purchase conversion.
+- **Campaign Suggestion**
+  Supports segment-level strategy review with campaign goal, recommendation, push copy, and matched sample users.
+
+---
+
+## Sample Outputs
 
 This project can generate outputs such as:
+- player lifecycle classification
+- churn recall target lists
+- first-purchase opportunity user lists
+- segment-level campaign suggestions
+- exportable CSV campaign files
+- frontend dashboard views for player lookup and priority list review
 
-player lifecycle classification
-churn recall target lists
-first-purchase opportunity user lists
-segment-level campaign suggestions
-exportable CSV campaign files
-Why This Project Matters
+---
+
+## Why This Project Matters
 
 This project is intended to demonstrate how AI strategy operations can be applied to game operations workflows.
 
 Instead of focusing only on model APIs or generic content generation, it emphasizes:
+- business-oriented user segmentation
+- interpretable rule-based scoring
+- strategy mapping
+- operational output generation
+- lightweight frontend visualization for decision support
 
-business-oriented user segmentation
-interpretable rule-based scoring
-strategy mapping
-operational output generation
+This makes it closer to a practical strategy operations prototype than a pure technical demo.
 
-This makes it closer to a lightweight strategy operations prototype than a pure technical demo.
+---
 
-Future Improvements
+## Future Improvements
 
 Planned next steps include:
-
-adding a lightweight visualization dashboard
-supporting interactive player search in a local web interface
-upgrading rule-based scoring with basic machine learning models
-improving campaign recommendation quality with LLM-based generation
+- adding chart-based visualizations for lifecycle stage, user segment, and recommended action distributions
+- enabling direct navigation from priority lists to player profile pages
+- improving campaign recommendation quality with LLM-based generation
+- upgrading rule-based scoring with basic machine learning models
+- deploying the frontend dashboard for easier demo access
