@@ -138,15 +138,23 @@ frontend/
 ### 1. Install backend dependencies
 ```bash
 npm install csv-parser csv-writer
-2. Generate scored player output
+```
+
+### 2. Generate scored player output
 node src/processUsers.js
-3. Export scored data to frontend JSON
+```
+
+### 3. Export scored data to frontend JSON
 node scripts/exportUsersJson.js
-4. Run frontend dashboard
+```
+
+### 4. Run frontend dashboard
 cd frontend
 npm install
 npm run dev
-5. Open local dashboard
+```
+
+### 5. Open local dashboard
 http://localhost:3001
 ```
 
