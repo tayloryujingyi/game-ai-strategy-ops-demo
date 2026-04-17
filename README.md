@@ -157,12 +157,16 @@ http://localhost:3001
 The frontend dashboard currently includes:
 
 - **Dashboard**
+
   Displays lifecycle stage count, high churn users, high LTV users, and first-purchase opportunity users based on actual scoring output.
 - **Player Profile**
+
   Supports user-level search using exported scoring data.
 - **Priority Lists**
+
   Displays high-priority users for recall, VIP maintenance, and first-purchase conversion.
 - **Campaign Suggestion**
+
   Supports segment-level strategy review with campaign goal, recommendation, push copy, and matched sample users.
 
 ---
@@ -170,6 +174,7 @@ The frontend dashboard currently includes:
 ## Sample Outputs
 
 This project can generate outputs such as:
+
 - player lifecycle classification
 - churn recall target lists
 - first-purchase opportunity user lists
@@ -184,6 +189,7 @@ This project can generate outputs such as:
 This project is intended to demonstrate how AI strategy operations can be applied to game operations workflows.
 
 Instead of focusing only on model APIs or generic content generation, it emphasizes:
+
 - business-oriented user segmentation
 - interpretable rule-based scoring
 - strategy mapping
@@ -197,6 +203,7 @@ This makes it closer to a practical strategy operations prototype than a pure te
 ## Future Improvements
 
 Planned next steps include:
+
 - adding chart-based visualizations for lifecycle stage, user segment, and recommended action distributions
 - enabling direct navigation from priority lists to player profile pages
 - improving campaign recommendation quality with LLM-based generation
