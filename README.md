@@ -1,5 +1,7 @@
 # AI-Powered Player Lifecycle Strategy Platform
 
+Live Demo: https://game-ai-strategy-ops-demo.vercel.app
+
 A Node.js + Next.js prototype for game player lifecycle strategy operations, designed around core game operations scenarios such as churn recall, first-purchase conversion, high-value player maintenance, and segment-level campaign planning.
 
 ## Project Background
