@@ -14,18 +14,18 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="border-b border-slate-200 bg-white">
+    <header className="sticky top-0 z-50 border-b border-pink-200/70 bg-pink-100/90 shadow-sm backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-4">
         <div>
-          <h1 className="text-lg font-semibold text-slate-900">
+          <h1 className="text-lg font-semibold tracking-tight text-zinc-950">
             Game LiveOps Strategy Platform
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-zinc-600">
             Player segmentation, risk scoring, and campaign recommendation
           </p>
         </div>
 
-        <nav className="flex gap-2 rounded-2xl bg-slate-50 p-1">
+        <nav className="flex gap-2 rounded-2xl bg-white/60 p-1 shadow-sm">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
 
@@ -35,8 +35,8 @@ export default function Navbar() {
                 href={item.href}
                 className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
                   isActive
-                    ? "bg-slate-900 text-white shadow-sm"
-                    : "text-slate-600 hover:bg-white hover:text-slate-900"
+                    ? "bg-white text-zinc-950 shadow-sm"
+                    : "text-zinc-700 hover:bg-pink-50 hover:text-zinc-950"
                 }`}
               >
                 {item.label}

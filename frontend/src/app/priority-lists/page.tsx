@@ -49,10 +49,10 @@ export default function PriorityListsPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-gray-50 px-8 py-6">
+      <main className="min-h-screen bg-gradient-to-b from-rose-50 via-pink-50 to-white px-8 py-8">
         <div className="mx-auto max-w-7xl">
           {/* Page Title */}
-          <section className="mb-8">
+          <section className="mb-8 rounded-3xl border border-rose-100 bg-white/70 p-6 shadow-sm">
             <h1 className="text-2xl font-semibold text-gray-900">
               Priority User Lists
             </h1>

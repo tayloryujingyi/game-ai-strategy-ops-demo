@@ -63,13 +63,16 @@ export default function PriorityUserTable({ users }: PriorityUserTableProps) {
   }
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-      <div className="mb-4 flex items-center justify-between">
+    <div className="rounded-3xl border border-pink-100 bg-white/85 p-6 shadow-sm backdrop-blur transition hover:border-pink-200 hover:shadow-md">
+      <div className="mb-5 flex items-center justify-between gap-4">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">
+          <div className="mb-3 h-1.5 w-12 rounded-full bg-pink-300" />
+
+          <h2 className="text-lg font-semibold tracking-tight text-zinc-950">
             Priority User List
           </h2>
-          <p className="text-sm text-gray-500">
+
+          <p className="mt-1 text-sm text-zinc-500">
             Users prioritized by churn risk, LTV potential, and recommended
             campaign action
           </p>
@@ -77,15 +80,15 @@ export default function PriorityUserTable({ users }: PriorityUserTableProps) {
 
         <button
           onClick={exportCampaignList}
-          className="rounded-xl bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
+          className="rounded-xl bg-pink-300 px-4 py-2 text-sm font-medium text-zinc-950 shadow-sm transition hover:bg-pink-400"
         >
           Export Campaign List
         </button>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-gray-100">
+      <div className="overflow-hidden rounded-2xl border border-pink-100 bg-white/75">
         <table className="w-full text-left text-sm">
-          <thead className="bg-gray-50 text-gray-500">
+          <thead className="bg-pink-50 text-zinc-600">
             <tr>
               <th className="px-4 py-3 font-medium">User ID</th>
               <th className="px-4 py-3 font-medium">Segment</th>
@@ -95,33 +98,33 @@ export default function PriorityUserTable({ users }: PriorityUserTableProps) {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-pink-100">
             {users.map((user) => (
-              <tr key={user.userId} className="hover:bg-gray-50">
-                <td className="px-4 py-3 font-medium text-gray-900">
+              <tr key={user.userId} className="transition hover:bg-pink-50/60">
+                <td className="px-4 py-3 font-semibold text-zinc-950">
                   {user.userId}
                 </td>
 
-                <td className="px-4 py-3 text-gray-700">{user.segment}</td>
+                <td className="px-4 py-3 text-zinc-700">{user.segment}</td>
 
-                <td className="px-4 py-3 text-gray-700">
+                <td className="px-4 py-3">
                   <span
                     className={
                       user.churnRisk >= 70
-                        ? "font-semibold text-red-600"
-                        : "text-gray-700"
+                        ? "font-semibold text-zinc-950"
+                        : "text-zinc-700"
                     }
                   >
                     {user.churnRisk}
                   </span>
                 </td>
 
-                <td className="px-4 py-3 text-gray-700">
+                <td className="px-4 py-3">
                   <span
                     className={
                       user.ltvPotential >= 75
-                        ? "font-semibold text-green-600"
-                        : "text-gray-700"
+                        ? "font-semibold text-zinc-950"
+                        : "text-zinc-700"
                     }
                   >
                     {user.ltvPotential}
@@ -129,7 +132,7 @@ export default function PriorityUserTable({ users }: PriorityUserTableProps) {
                 </td>
 
                 <td className="px-4 py-3">
-                  <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                  <span className="rounded-full bg-pink-50 px-3 py-1 text-xs font-medium text-zinc-700 ring-1 ring-pink-100">
                     {user.recommendedAction}
                   </span>
                 </td>
