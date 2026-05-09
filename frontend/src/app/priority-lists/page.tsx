@@ -1,119 +1,121 @@
 import Navbar from "@/components/Navbar";
-import users from "@/lib/usersScored.json";
+import PriorityUserTable from "@/components/dashboard/PriorityUserTable";
+import { priorityUsers } from "@/lib/dashboardData";
 
-type UserProfile = {
-  user_id: string;
-  lifecycle_stage: string;
-  user_segment: string;
-  recommended_action: string;
-  churn_risk_score: number;
-  conversion_score: number;
-  ltv_score: number;
-};
+const prioritySegments = [
+  {
+    title: "High Churn Risk Users",
+    value: "28",
+    description: "Users with churn risk score ≥ 60",
+    action: "Recall Campaign",
+  },
+  {
+    title: "High LTV Users",
+    value: "19",
+    description: "Users with LTV potential score ≥ 75",
+    action: "VIP Maintenance",
+  },
+  {
+    title: "High Potential First Purchase Users",
+    value: "4",
+    description: "High activity users with no payment history",
+    action: "First Purchase Offer",
+  },
+];
 
-const allUsers = users as UserProfile[];
-
-const highChurnUsers = [...allUsers]
-  .filter((user) => user.churn_risk_score >= 60)
-  .sort((a, b) => b.churn_risk_score - a.churn_risk_score)
-  .slice(0, 10);
-
-const highLtvUsers = [...allUsers]
-  .filter((user) => user.ltv_score >= 60)
-  .sort((a, b) => b.ltv_score - a.ltv_score)
-  .slice(0, 10);
-
-const firstPurchaseUsers = [...allUsers]
-  .filter((user) => user.user_segment === "High Potential First Purchase")
-  .sort((a, b) => b.conversion_score - a.conversion_score)
-  .slice(0, 10);
-
-function UserTable({
-  title,
-  scoreLabel,
-  scoreKey,
-  users,
-}: {
-  title: string;
-  scoreLabel: string;
-  scoreKey: "churn_risk_score" | "ltv_score" | "conversion_score";
-  users: UserProfile[];
-}) {
-  return (
-    <section className="rounded-2xl bg-white p-6 shadow-sm">
-      <h2 className="text-xl font-semibold text-slate-900">{title}</h2>
-
-      {users.length === 0 ? (
-        <p className="mt-4 text-sm text-slate-500">No matching users found.</p>
-      ) : (
-        <div className="mt-4 overflow-x-auto">
-          <table className="min-w-full text-sm">
-            <thead>
-              <tr className="border-b border-slate-200 text-left text-slate-500">
-                <th className="px-3 py-3">User ID</th>
-                <th className="px-3 py-3">{scoreLabel}</th>
-                <th className="px-3 py-3">Lifecycle</th>
-                <th className="px-3 py-3">User Segment</th>
-                <th className="px-3 py-3">Recommended Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr
-                  key={user.user_id}
-                  className="border-b border-slate-100 text-slate-700"
-                >
-                  <td className="px-3 py-3 font-medium text-slate-900">
-                    {user.user_id}
-                  </td>
-                  <td className="px-3 py-3">{user[scoreKey]}</td>
-                  <td className="px-3 py-3">{user.lifecycle_stage}</td>
-                  <td className="px-3 py-3">{user.user_segment}</td>
-                  <td className="px-3 py-3">{user.recommended_action}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </section>
-  );
-}
+const actionPlans = [
+  {
+    title: "Recall Campaign",
+    target: "At-Risk / Dormant Users",
+    description:
+      "Send return rewards, limited-time event reminders, and personalized content recommendations to reactivate users.",
+  },
+  {
+    title: "VIP Maintenance",
+    target: "Core Paying Users",
+    description:
+      "Provide exclusive rewards, early access benefits, and personalized retention care for high-value users.",
+  },
+  {
+    title: "First Purchase Offer",
+    target: "Active Non-Paying Users",
+    description:
+      "Use starter bundles, first-purchase coupons, and low-barrier payment incentives to improve conversion.",
+  },
+];
 
 export default function PriorityListsPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-slate-50 p-8">
+
+      <main className="min-h-screen bg-gray-50 px-8 py-6">
         <div className="mx-auto max-w-7xl">
-          <h1 className="text-3xl font-bold text-slate-900">Priority Lists</h1>
-          <p className="mt-3 text-slate-600">
-            Review high-priority users for recall, VIP maintenance, and
-            first-purchase conversion based on actual scoring results.
-          </p>
+          {/* Page Title */}
+          <section className="mb-8">
+            <h1 className="text-2xl font-semibold text-gray-900">
+              Priority User Lists
+            </h1>
+            <p className="mt-1 text-sm text-gray-500">
+              Prioritized player groups for campaign execution and LiveOps
+              decision-making
+            </p>
+          </section>
 
-          <div className="mt-8 grid grid-cols-1 gap-6">
-            <UserTable
-              title="High Churn Risk Users"
-              scoreLabel="Churn Risk Score"
-              scoreKey="churn_risk_score"
-              users={highChurnUsers}
-            />
+          {/* Priority Segment Cards */}
+          <section className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {prioritySegments.map((segment) => (
+              <div
+                key={segment.title}
+                className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+              >
+                <p className="text-sm text-gray-500">{segment.title}</p>
+                <p className="mt-3 text-3xl font-semibold text-gray-900">
+                  {segment.value}
+                </p>
+                <p className="mt-2 text-sm text-gray-500">
+                  {segment.description}
+                </p>
 
-            <UserTable
-              title="High LTV Users"
-              scoreLabel="LTV Score"
-              scoreKey="ltv_score"
-              users={highLtvUsers}
-            />
+                <div className="mt-4 rounded-xl bg-gray-50 px-4 py-3">
+                  <p className="text-xs text-gray-500">Recommended Action</p>
+                  <p className="mt-1 text-sm font-medium text-gray-900">
+                    {segment.action}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </section>
 
-            <UserTable
-              title="High Potential First Purchase Users"
-              scoreLabel="Conversion Score"
-              scoreKey="conversion_score"
-              users={firstPurchaseUsers}
-            />
-          </div>
+          {/* Campaign Execution Queue */}
+          <section className="mb-6">
+            <PriorityUserTable users={priorityUsers} />
+          </section>
+
+          {/* Action Plan Cards */}
+          <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {actionPlans.map((plan) => (
+              <div
+                key={plan.title}
+                className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+              >
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    {plan.title}
+                  </h2>
+                  <p className="mt-1 text-sm text-gray-500">{plan.target}</p>
+                </div>
+
+                <p className="text-sm leading-6 text-gray-600">
+                  {plan.description}
+                </p>
+
+                <button className="mt-5 rounded-xl bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700">
+                  Generate Campaign Brief
+                </button>
+              </div>
+            ))}
+          </section>
         </div>
       </main>
     </>
